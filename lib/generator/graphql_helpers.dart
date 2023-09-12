@@ -1,4 +1,4 @@
-// @dart = 2.8
+// @dart = 3.1.1
 
 import 'package:artemis/visitor/type_definition_node_visitor.dart';
 import 'package:gql/ast.dart';

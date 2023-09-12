@@ -1,4 +1,4 @@
-// @dart = 2.8
+// @dart = 3.1.1
 
 import 'package:artemis/builder.dart';
 import 'package:artemis/generator/data/data.dart';

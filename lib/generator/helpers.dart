@@ -1,4 +1,4 @@
-// @dart = 2.8
+// @dart = 3.1.1
 
 import 'package:artemis/generator/data/data.dart';
 import 'package:artemis/generator/ephemeral_data.dart';

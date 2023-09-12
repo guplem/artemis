@@ -1,4 +1,4 @@
-// @dart = 2.8
+// @dart = 3.1.1
 
 import 'package:artemis/generator/data/class_definition.dart';
 import 'package:artemis/generator/data/definition.dart';
