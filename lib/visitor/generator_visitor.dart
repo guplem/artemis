@@ -10,7 +10,7 @@ import 'package:meta/meta.dart';
 class GeneratorVisitor extends RecursiveVisitor {
   /// Constructor
   GeneratorVisitor({
-    @required this.context,
+    required this.context,
   });
 
   /// Current context

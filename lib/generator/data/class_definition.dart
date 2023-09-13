@@ -34,7 +34,7 @@ class ClassDefinition extends Definition with DataPrinter {
 
   /// Instantiate a class definition.
   ClassDefinition({
-    @required Name name,
+    required Name name,
     this.properties = const [],
     this.extension,
     this.implementations = const [],

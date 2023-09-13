@@ -263,9 +263,9 @@ List<String> _extractCustomImports(
 
 /// Creates class property object
 ClassProperty createClassProperty({
-  @required ClassPropertyName fieldName,
+  required ClassPropertyName fieldName,
   ClassPropertyName fieldAlias,
-  @required Context context,
+  required Context context,
   _OnNewClassFoundCallback onNewClassFound,
   bool markAsUsed = true,
 }) {

@@ -31,8 +31,8 @@ class QueryDefinition extends Definition with DataPrinter {
 
   /// Instantiate a query definition.
   QueryDefinition({
-    @required Name name,
-    @required this.operationName,
+    required Name name,
+    required this.operationName,
     this.document = const DocumentNode(),
     this.classes = const [],
     this.inputs = const [],

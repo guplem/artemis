@@ -22,7 +22,7 @@ class QueryInput extends Definition with DataPrinter {
 
   /// Instantiate an input parameter.
   QueryInput({
-    @required this.type,
+    required this.type,
     this.isNonNull = false,
     this.annotations = const [],
     this.name,

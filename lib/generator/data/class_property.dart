@@ -25,11 +25,11 @@ class ClassProperty extends Definition with DataPrinter {
 
   /// Instantiate a property (field) from a class.
   ClassProperty({
-    @required this.type,
+    required this.type,
     this.annotations = const [],
     this.isNonNull = false,
     this.isResolveType = false,
-    @required this.name,
+    required this.name,
   })  : assert(hasValue(type) && hasValue(name)),
         super(name: name);
 

@@ -23,7 +23,7 @@ class LibraryDefinition extends Equatable with DataPrinter {
 
   /// Instantiate a library definition.
   LibraryDefinition({
-    @required this.basename,
+    required this.basename,
     this.queries = const [],
     this.customImports = const [],
   }) : assert(hasValue(basename));

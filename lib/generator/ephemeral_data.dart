@@ -36,18 +36,18 @@ List<Name> createPathName(List<Name> path, NamingScheme namingScheme,
 class Context {
   /// Instantiates context for [_GeneratorVisitor] iterations.
   Context({
-    @required this.schema,
-    @required this.options,
-    @required this.schemaMap,
-    @required this.path,
-    @required this.currentType,
-    @required this.currentFieldName,
-    @required this.currentClassName,
+    required this.schema,
+    required this.options,
+    required this.schemaMap,
+    required this.path,
+    required this.currentType,
+    required this.currentFieldName,
+    required this.currentClassName,
     this.alias,
     this.ofUnion,
-    @required this.generatedClasses,
-    @required this.inputsClasses,
-    @required this.fragments,
+    required this.generatedClasses,
+    required this.inputsClasses,
+    required this.fragments,
     this.usedEnums = const {},
     this.usedInputObjects = const {},
     this.align = 0,
@@ -113,9 +113,9 @@ class Context {
 
   /// Returns a copy of this context, on the same path, but with a new type.
   Context nextTypeWithSamePath({
-    @required TypeDefinitionNode nextType,
-    @required Name nextFieldName,
-    @required Name nextClassName,
+    required TypeDefinitionNode nextType,
+    required Name nextFieldName,
+    required Name nextClassName,
     TypeDefinitionNode ofUnion,
     Name alias,
     List<Definition> generatedClasses,
@@ -141,7 +141,7 @@ class Context {
 
   /// Returns a copy of this context, with a new type on a new path.
   Context next({
-    @required TypeDefinitionNode nextType,
+    required TypeDefinitionNode nextType,
     Name nextFieldName,
     Name nextClassName,
     Name alias,
@@ -284,9 +284,9 @@ class Context {
 
   /// Returns a copy of this context, with next type, but on the first path.
   Context nextTypeWithNoPath({
-    @required TypeDefinitionNode nextType,
-    @required Name nextFieldName,
-    @required Name nextClassName,
+    required TypeDefinitionNode nextType,
+    required Name nextFieldName,
+    required Name nextClassName,
     TypeDefinitionNode ofUnion,
     Name alias,
     List<Definition> generatedClasses,

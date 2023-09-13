@@ -13,7 +13,7 @@ import 'package:gql/ast.dart';
 class CanonicalVisitor extends RecursiveVisitor {
   /// Constructor
   CanonicalVisitor({
-    @required this.context,
+    required this.context,
   });
 
   /// Current context

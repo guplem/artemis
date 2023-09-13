@@ -11,7 +11,7 @@ abstract class Definition extends Equatable with DataPrinter {
   final Name name;
 
   /// Instantiate a definition.
-  Definition({@required this.name});
+  Definition({required this.name});
 }
 
 /// Abstract name of an entity.
