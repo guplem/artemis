@@ -25,7 +25,7 @@ class QueryInput extends Definition with DataPrinter {
     required this.type,
     this.isNonNull = false,
     this.annotations = const [],
-    this.name,
+    required this.name,
   })  : assert(hasValue(type) && hasValue(name)),
         super(name: name);
 
@@ -41,7 +41,7 @@ class QueryInput extends Definition with DataPrinter {
 ///
 class QueryInputName extends Name {
   ///
-  QueryInputName({String name}) : super(name: name);
+  QueryInputName({required String name}) : super(name: name);
 
   @override
   Map<String, Object> get namedProps => {

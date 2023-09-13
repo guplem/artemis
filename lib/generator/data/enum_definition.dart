@@ -18,7 +18,7 @@ class EnumDefinition extends Definition with DataPrinter {
   /// Instantiate an enum definition.
   EnumDefinition({
     required this.name,
-    this.values,
+    required this.values,
   })  : assert(hasValue(name) && hasValue(values)),
         super(name: name);
 
@@ -32,7 +32,7 @@ class EnumDefinition extends Definition with DataPrinter {
 /// Enum name
 class EnumName extends Name with DataPrinter {
   /// Instantiate a enum name definition.
-  EnumName({String name}) : super(name: name);
+  EnumName({required String name}) : super(name: name);
 
   @override
   String normalize(String name) {

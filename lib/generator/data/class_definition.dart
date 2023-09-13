@@ -36,11 +36,11 @@ class ClassDefinition extends Definition with DataPrinter {
   ClassDefinition({
     required Name name,
     this.properties = const [],
-    this.extension,
+    required this.extension,
     this.implementations = const [],
     this.mixins = const [],
     this.factoryPossibilities = const {},
-    TypeName typeNameField,
+    TypeName? typeNameField,
     this.isInput = false,
   })  : assert(hasValue(name)),
         typeNameField = typeNameField ?? TypeName(name: '__typename'),
@@ -62,10 +62,10 @@ class ClassDefinition extends Definition with DataPrinter {
 /// Class name.
 class ClassName extends Name with DataPrinter {
   /// Instantiate a class name definition.
-  ClassName({String name}) : super(name: name);
+  ClassName({required String name}) : super(name: name);
 
   /// Generate class name from hierarchical path
-  factory ClassName.fromPath({List<Name> path}) {
+  factory ClassName.fromPath({required List<Name> path}) {
     return ClassName(name: path.map((e) => e.namePrintable).join(r'$_'));
   }
 

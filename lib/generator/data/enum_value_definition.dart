@@ -17,7 +17,7 @@ class EnumValueDefinition extends Definition with DataPrinter {
   EnumValueDefinition({
     required this.name,
     this.annotations = const [],
-  });
+  }) : super(name: name);
 
   @override
   Map<String, Object> get namedProps => {

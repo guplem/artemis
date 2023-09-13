@@ -3,6 +3,7 @@
 import 'package:artemis/generator/data/data.dart';
 import 'package:artemis/generator/ephemeral_data.dart';
 import 'package:build/build.dart';
+import 'package:collection/collection.dart';
 import 'package:gql/ast.dart';
 
 typedef _IterableFunction<T, U> = U Function(T i);
@@ -154,7 +155,7 @@ bool hasNonNullableInput(Iterable<QueryDefinition> queries) {
 }
 
 /// Check if [obj] has value (isn't null or empty).
-bool hasValue(Object obj) {
+bool hasValue(Object? obj) {
   if (obj is Iterable) {
     return obj != null && obj.isNotEmpty;
   }
@@ -163,14 +164,12 @@ bool hasValue(Object obj) {
 
 /// Proceeds deprecated annotation
 List<String> proceedDeprecated(
-  List<DirectiveNode> directives,
+  List<DirectiveNode>? directives,
 ) {
   final annotations = <String>[];
 
-  final deprecatedDirective = directives?.firstWhere(
-    (directive) => directive.name.value == 'deprecated',
-    orElse: () => null,
-  );
+  final deprecatedDirective = directives
+      ?.firstWhereOrNull((directive) => directive.name.value == 'deprecated');
 
   if (deprecatedDirective != null) {
     final reasonValueNode = deprecatedDirective?.arguments

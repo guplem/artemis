@@ -58,10 +58,10 @@ class QueryDefinition extends Definition with DataPrinter {
 /// Query name
 class QueryName extends Name with DataPrinter {
   /// Instantiate a query name definition.
-  QueryName({String name}) : super(name: name);
+  QueryName({required String name}) : super(name: name);
 
   /// Generate class name from hierarchical path
-  factory QueryName.fromPath({List<Name> path}) {
+  factory QueryName.fromPath({required List<Name> path}) {
     return QueryName(name: path.map((e) => e.namePrintable).join(r'$_'));
   }
 

@@ -4,9 +4,11 @@ import 'package:equatable/equatable.dart';
 
 import 'helpers.dart';
 
-String _formatPrint(Object obj) {
+String? _formatPrint(dynamic obj) {
   if (obj is Map) {
-    return '{${obj.entries.map((e) => '${_formatPrint(e.key)}: ${_formatPrint(e.value)}').join(', ')}}';
+    return '{${obj.entries.map((MapEntry e) {
+      return '${_formatPrint(e.key)}: ${_formatPrint(e.value)}';
+    }).join(', ')}}';
   } else if (obj is Iterable) {
     return '[${obj.map(_formatPrint).join(', ')}]';
   } else if (obj is String) {

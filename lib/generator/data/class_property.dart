@@ -38,11 +38,11 @@ class ClassProperty extends Definition with DataPrinter {
 
   /// Creates a copy of [ClassProperty] without modifying the original.
   ClassProperty copyWith({
-    TypeName type,
-    ClassPropertyName name,
-    List<String> annotations,
-    bool isNonNull,
-    bool isResolveType,
+    TypeName? type,
+    ClassPropertyName? name,
+    List<String>? annotations,
+    bool? isNonNull,
+    bool? isResolveType,
   }) =>
       ClassProperty(
         type: type ?? this.type,
@@ -65,7 +65,7 @@ class ClassProperty extends Definition with DataPrinter {
 /// Class property name
 class ClassPropertyName extends Name with DataPrinter {
   /// Instantiate a class property name definition.
-  ClassPropertyName({String name}) : super(name: name);
+  ClassPropertyName({required String name}) : super(name: name);
 
   @override
   String normalize(String name) {
@@ -85,7 +85,7 @@ const _camelCaseTypes = {'bool', 'double', 'int'};
 /// Type name
 class TypeName extends Name with DataPrinter {
   /// Instantiate a type name definition.
-  TypeName({String name}) : super(name: name);
+  TypeName({required String name}) : super(name: name);
 
   @override
   Map<String, Object> get namedProps => {

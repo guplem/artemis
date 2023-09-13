@@ -1,6 +1,7 @@
 // @dart = 3.1.1
 
 import 'package:artemis/visitor/type_definition_node_visitor.dart';
+import 'package:collection/collection.dart';
 import 'package:gql/ast.dart';
 
 import '../generator/data/data.dart';
@@ -10,8 +11,8 @@ import 'data/definition.dart';
 
 /// Get a full [TypeDefinitionNode] from a type node.
 TypeDefinitionNode getTypeByName(DocumentNode schema, TypeNode typeNode,
-    {String context}) {
-  NamedTypeNode namedNode;
+    {String? context}) {
+  late NamedTypeNode namedNode;
 
   if (typeNode is ListTypeNode) {
     return getTypeByName(schema, typeNode.type, context: context);
@@ -39,8 +40,8 @@ TypeName buildTypeName(
   Node node,
   GeneratorOptions options, {
   bool dartType = true,
-  Name replaceLeafWith,
-  DocumentNode schema,
+  Name? replaceLeafWith,
+  required DocumentNode schema,
 }) {
   if (node is NamedTypeNode) {
     final typeVisitor = TypeDefinitionNodeVisitor();
@@ -90,21 +91,30 @@ Map<String, ScalarMap> _defaultScalarMapping = {
 };
 
 /// Retrieve a scalar mapping of a type.
-ScalarMap getSingleScalarMap(GeneratorOptions options, String type,
-        {bool throwOnNotFound = true}) =>
-    options.scalarMapping.followedBy(_defaultScalarMapping.values).firstWhere(
-          (m) => m.graphQLType == type,
-          orElse: () => throwOnNotFound
-              ? throw MissingScalarConfigurationException(type)
-              : null,
-        );
+ScalarMap? getSingleScalarMap(GeneratorOptions options, String type,
+    {bool throwOnNotFound = true}) {
+  try {
+    final thing = options.scalarMapping
+        .followedBy(_defaultScalarMapping.values)
+        .firstWhere((m) => m.graphQLType == type);
+    return thing;
+  } on StateError {
+    if (throwOnNotFound) {
+      throw MissingScalarConfigurationException(type);
+    }
+    return null;
+  }
+}
 
 /// Retrieve imports of a scalar map.
 Iterable<String> importsOfScalar(GeneratorOptions options, String type) {
-  final scalarMapping = options.scalarMapping.firstWhere(
+  final ScalarMap? scalarMapping = options.scalarMapping.firstWhereOrNull(
     (m) => m.graphQLType == type,
-    orElse: () => null,
   );
-  return (scalarMapping?.dartType?.imports ?? [])
-      .followedBy([scalarMapping?.customParserImport]).where((c) => c != null);
+  String? p = scalarMapping?.customParserImport;
+  List<String> i = (scalarMapping?.dartType?.imports ?? []);
+  if (p != null) {
+    i = i.followedBy([p]).toList();
+  }
+  return i;
 }

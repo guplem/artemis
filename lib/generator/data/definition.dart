@@ -20,7 +20,7 @@ abstract class Name extends Equatable with DataPrinter {
   final String name;
 
   /// Instantiate a name.
-  Name({this.name}) : assert(hasValue(name));
+  Name({required this.name}) : assert(hasValue(name));
 
   /// Name suitable for code printing
   String get namePrintable => normalize(name);
