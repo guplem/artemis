@@ -8,13 +8,13 @@ import 'package:meta/meta.dart';
 @immutable
 class GraphQLResponse<T> {
   /// The typed data of this response.
-  final T data;
+  final T? data;
 
   /// The list of errors in this response.
-  final List<GraphQLError> errors;
+  final List<GraphQLError>? errors;
 
   /// If this response has any error.
-  bool get hasErrors => errors != null && errors.isNotEmpty;
+  bool get hasErrors => errors != null && errors!.isNotEmpty;
 
   /// Instantiates a GraphQL response.
   const GraphQLResponse({

@@ -64,7 +64,7 @@ class GraphQLQueryBuilder implements Builder {
   final List<String> expectedOutputs;
 
   /// Callback fired when the generator processes a [QueryDefinition].
-  OnBuildQuery onBuild;
+  OnBuildQuery? onBuild;
 
   @override
   Map<String, List<String>> get buildExtensions => {
@@ -143,7 +143,7 @@ ${e}
         gqlSchema,
       );
       if (onBuild != null) {
-        onBuild(libDefinition);
+        onBuild!(libDefinition);
       }
       writeLibraryDefinitionToBuffer(
         buffer,
