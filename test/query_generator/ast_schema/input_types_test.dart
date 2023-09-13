@@ -226,7 +226,11 @@ class OtherObjectInput with EquatableMixin {
 
 @JsonSerializable(explicitToJson: true)
 class CreateThingInput with EquatableMixin {
-  CreateThingInput({@required this.clientId, this.message, this.shares});
+  CreateThingInput({
+    @required this.clientId,
+    this.message,
+    this.shares,
+  });
 
   factory CreateThingInput.fromJson(Map<String, dynamic> json) =>
       _$CreateThingInputFromJson(json);

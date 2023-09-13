@@ -357,37 +357,42 @@ class BrowseArticlesQuery
   @override
   final DocumentNode document = DocumentNode(definitions: [
     OperationDefinitionNode(
-        type: OperationType.query,
-        name: NameNode(value: 'BrowseArticles'),
-        variableDefinitions: [],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: 'articles'),
+      type: OperationType.query,
+      name: NameNode(value: 'BrowseArticles'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'articles'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'id'),
               alias: null,
               arguments: [],
               directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'title'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'articleType'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null)
-              ]))
-        ]))
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'title'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'articleType'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
+        )
+      ]),
+    )
   ]);
 
   @override
@@ -449,7 +454,10 @@ class BrowseRepositories$Query with EquatableMixin {
 
 @JsonSerializable(explicitToJson: true)
 class NotificationOptionInput with EquatableMixin {
-  NotificationOptionInput({this.type, this.enabled});
+  NotificationOptionInput({
+    this.type,
+    this.enabled,
+  });
 
   factory NotificationOptionInput.fromJson(Map<String, dynamic> json) =>
       _$NotificationOptionInputFromJson(json);
@@ -472,6 +480,7 @@ enum Privacy {
   @JsonValue('ARTEMIS_UNKNOWN')
   artemisUnknown,
 }
+
 enum Status {
   @JsonValue('ARCHIVED')
   archived,
@@ -480,6 +489,7 @@ enum Status {
   @JsonValue('ARTEMIS_UNKNOWN')
   artemisUnknown,
 }
+
 enum NotificationType {
   @JsonValue('ACTIVITY_MESSAGE')
   activityMessage,
@@ -516,59 +526,67 @@ class BrowseRepositoriesQuery extends GraphQLQuery<BrowseRepositories$Query,
   @override
   final DocumentNode document = DocumentNode(definitions: [
     OperationDefinitionNode(
-        type: OperationType.query,
-        name: NameNode(value: 'BrowseRepositories'),
-        variableDefinitions: [
-          VariableDefinitionNode(
-              variable:
-                  VariableNode(name: NameNode(value: 'notificationTypes')),
-              type: ListTypeNode(
-                  type: NamedTypeNode(
-                      name: NameNode(value: 'NotificationOptionInput'),
-                      isNonNull: false),
-                  isNonNull: false),
-              defaultValue: DefaultValueNode(value: null),
-              directives: [])
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: 'repositories'),
+      type: OperationType.query,
+      name: NameNode(value: 'BrowseRepositories'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'notificationTypes')),
+          type: ListTypeNode(
+            type: NamedTypeNode(
+              name: NameNode(value: 'NotificationOptionInput'),
+              isNonNull: false,
+            ),
+            isNonNull: false,
+          ),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        )
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'repositories'),
+          alias: null,
+          arguments: [
+            ArgumentNode(
+              name: NameNode(value: 'notificationTypes'),
+              value: VariableNode(name: NameNode(value: 'notificationTypes')),
+            )
+          ],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'id'),
               alias: null,
-              arguments: [
-                ArgumentNode(
-                    name: NameNode(value: 'notificationTypes'),
-                    value: VariableNode(
-                        name: NameNode(value: 'notificationTypes')))
-              ],
+              arguments: [],
               directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'title'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'privacy'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'status'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null)
-              ]))
-        ]))
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'title'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'privacy'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'status'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
+        )
+      ]),
+    )
   ]);
 
   @override
