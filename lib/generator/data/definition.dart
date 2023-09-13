@@ -1,9 +1,8 @@
-// @dart = 3.1.1
+// @dart = 3.1
 
 import 'package:artemis/generator/data_printer.dart';
 import 'package:artemis/generator/helpers.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 /// Abstract definition of an entity.
 abstract class Definition extends Equatable with DataPrinter {

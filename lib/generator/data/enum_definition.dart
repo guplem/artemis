@@ -1,10 +1,9 @@
-// @dart = 3.1.1
+// @dart = 3.1
 
 import 'package:artemis/generator/data/definition.dart';
 import 'package:artemis/generator/data/enum_value_definition.dart';
 import 'package:artemis/generator/data_printer.dart';
 import 'package:artemis/generator/helpers.dart';
-import 'package:meta/meta.dart';
 import 'package:recase/recase.dart';
 
 /// Define a Dart enum parsed from GraphQL schema.

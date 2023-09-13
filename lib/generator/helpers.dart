@@ -1,4 +1,4 @@
-// @dart = 3.1.1
+// @dart = 3.1
 
 import 'package:artemis/generator/data/data.dart';
 import 'package:artemis/generator/ephemeral_data.dart';
@@ -88,9 +88,9 @@ Iterable<T> _removeDuplicatedBy<T, U>(
 /// __typename => $$typename
 /// new -> kw$new
 String normalizeName(String name) {
-  if (name == null) {
-    return name;
-  }
+  // if (name == null) {
+  //   return name;
+  // }
 
   final regExp = RegExp(r'^(_+)([\w$]*)$');
   var matches = regExp.allMatches(name);
@@ -156,8 +156,8 @@ bool hasNonNullableInput(Iterable<QueryDefinition> queries) {
 
 /// Check if [obj] has value (isn't null or empty).
 bool hasValue(Object? obj) {
-  if (obj is Iterable) {
-    return obj != null && obj.isNotEmpty;
+  if (obj != null && obj is Iterable) {
+    return obj.isNotEmpty;
   }
   return obj != null && obj.toString().isNotEmpty;
 }
@@ -172,9 +172,9 @@ List<String> proceedDeprecated(
       ?.firstWhereOrNull((directive) => directive.name.value == 'deprecated');
 
   if (deprecatedDirective != null) {
-    final reasonValueNode = deprecatedDirective?.arguments
-        ?.firstWhere((argument) => argument.name.value == 'reason')
-        ?.value;
+    final reasonValueNode = deprecatedDirective.arguments
+        .firstWhere((argument) => argument.name.value == 'reason')
+        .value;
 
     final reason = reasonValueNode is StringValueNode
         ? reasonValueNode.value

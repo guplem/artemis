@@ -1,11 +1,10 @@
-// @dart = 3.1.1
+// @dart = 3.1
 
 import 'package:artemis/builder.dart';
 import 'package:artemis/generator/data/data.dart';
 import 'package:build/build.dart';
 import 'package:build_test/build_test.dart';
 import 'package:logging/logging.dart';
-import 'package:meta/meta.dart';
 import 'package:test/test.dart';
 import 'package:collection/collection.dart';
 
@@ -24,8 +23,6 @@ Future testGenerator({
   Map<String, Object> outputsMap = const {},
 }) async {
   Logger.root.level = Level.INFO;
-
-  assert((schema) != null);
 
   final anotherBuilder = graphQLQueryBuilder(BuilderOptions({
     if (!generateHelpers) 'generate_helpers': false,
@@ -67,7 +64,6 @@ Future testNaming({
   required String namingScheme,
   bool shouldFail = false,
 }) {
-  assert((schema) != null);
   Logger.root.level = Level.ALL;
 
   final anotherBuilder = graphQLQueryBuilder(BuilderOptions({

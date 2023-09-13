@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:artemis/generator.dart';
 import 'package:artemis/generator/data/data.dart';
 import 'package:artemis/generator/ephemeral_data.dart';

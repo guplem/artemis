@@ -1,4 +1,4 @@
-// @dart = 3.1.1
+// @dart = 3.1
 
 import 'package:artemis/generator/data/data.dart';
 import 'package:artemis/generator/data/enum_value_definition.dart';
@@ -9,7 +9,6 @@ import 'package:artemis/visitor/schema_definition_visitor.dart';
 import 'package:artemis/visitor/type_definition_node_visitor.dart';
 import 'package:collection/collection.dart';
 import 'package:gql/ast.dart';
-import 'package:meta/meta.dart';
 import 'package:path/path.dart' as p;
 
 import './generator/ephemeral_data.dart';
@@ -174,12 +173,12 @@ Iterable<QueryDefinition> generateDefinitions(
         break;
     }
 
-    final rootTypeName =
+    final String? rootTypeName =
         (schemaVisitor.schemaDefinitionNode?.operationTypes ?? [])
                 .firstWhereOrNull((e) => e.operation == operation.type)
                 ?.type
-                ?.name
-                ?.value ??
+                .name
+                .value ??
             suffix;
 
     if (rootTypeName == null) {
@@ -203,7 +202,7 @@ Iterable<QueryDefinition> generateDefinitions(
       schemaMap: schemaMap,
       path: [
         TypeName(name: operationName),
-        TypeName(name: parentType!.name.value)
+        TypeName(name: parentType.name.value)
       ],
       currentType: parentType,
       currentFieldName: null,
@@ -301,7 +300,7 @@ ClassProperty createClassProperty({
 
   if (fieldType == null) {
     throw Exception(
-        '''Field $fieldName was not found in GraphQL type ${context.currentType?.name?.value}.
+        '''Field $fieldName was not found in GraphQL type ${context.currentType?.name.value}.
 Make sure your query is correct and your schema is updated.''');
   }
 
@@ -332,7 +331,7 @@ Make sure your query is correct and your schema is updated.''');
       aliasedContext.next(
         nextType: nextType,
         nextFieldName: ClassPropertyName(
-            name: regularField?.name?.value ?? regularInputField?.name?.value ?? ''),
+            name: regularField?.name.value ?? regularInputField?.name.value ?? ''),
         nextClassName: ClassName(name: nextType.name.value),
         alias: fieldAlias,
       ),

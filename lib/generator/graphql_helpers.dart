@@ -1,4 +1,4 @@
-// @dart = 3.1.1
+// @dart = 3.1
 
 import 'package:artemis/visitor/type_definition_node_visitor.dart';
 import 'package:collection/collection.dart';
@@ -7,7 +7,6 @@ import 'package:gql/ast.dart';
 import '../generator/data/data.dart';
 import '../generator/errors.dart';
 import '../schema/options.dart';
-import 'data/definition.dart';
 
 /// Get a full [TypeDefinitionNode] from a type node.
 TypeDefinitionNode getTypeByName(DocumentNode schema, TypeNode typeNode,

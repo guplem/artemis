@@ -1,4 +1,4 @@
-// @dart = 3.1.1
+// @dart = 3.1
 
 const schema = r'''
 enum SomeEnum {

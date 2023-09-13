@@ -1,4 +1,4 @@
-// @dart = 3.1.1
+// @dart = 3.1
 
 import 'dart:async';
 
@@ -40,7 +40,7 @@ class ArtemisClient {
   }
 
   /// Create an [ArtemisClient] from [Link].
-  ArtemisClient.fromLink(this._link) : assert(_link != null);
+  ArtemisClient.fromLink(this._link);
 
   /// Executes a [GraphQLQuery], returning a typed response.
   Future<GraphQLResponse<T>> execute<T, U extends JsonSerializable>(

@@ -1,4 +1,4 @@
-// @dart = 3.1.1
+// @dart = 3.1
 
 import 'package:artemis/generator/data/data.dart';
 import 'package:artemis/generator/data/enum_value_definition.dart';
@@ -183,7 +183,7 @@ Spec classDefinitionToSpec(
 
 /// Generates a [Spec] of a single fragment class definition.
 Spec fragmentClassDefinitionToSpec(FragmentClassDefinition definition) {
-  final fields = (definition.properties ?? []).map((p) {
+  final fields = (definition.properties).map((p) {
     final lines = <String>[];
     lines.addAll(p.annotations.map((e) => '@${e}'));
     lines.add('${p.type.namePrintable} ${p.name.namePrintable};');
@@ -404,7 +404,7 @@ String specToString(Spec spec) {
 /// a [QueryDefinition] into a buffer.
 void writeLibraryDefinitionToBuffer(
   StringBuffer buffer,
-  List<String> ignoreForFile,
+  List<String>? ignoreForFile,
   LibraryDefinition definition,
 ) {
   buffer.writeln('// GENERATED CODE - DO NOT MODIFY BY HAND');

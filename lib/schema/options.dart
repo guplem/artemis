@@ -1,4 +1,4 @@
-// @dart = 3.1.1
+// @dart = 3.1
 
 import 'package:collection/collection.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -130,13 +130,13 @@ enum NamingScheme {
 @JsonSerializable(fieldRename: FieldRename.snake)
 class SchemaMap {
   /// The output file of this queries glob.
-  final String output;
+  final String? output;
 
   /// The GraphQL schema string.
-  final String schema;
+  final String? schema;
 
   /// A [Glob] to find queries files.
-  final String queriesGlob;
+  final String? queriesGlob;
 
   /// The resolve type field used on this schema.
   @JsonKey(defaultValue: '__typename')

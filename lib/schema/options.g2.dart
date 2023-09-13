@@ -1,4 +1,4 @@
-// @dart = 3.1.1
+// @dart = 3.1
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
@@ -16,7 +16,7 @@ GeneratorOptions _$GeneratorOptionsFromJson(Map json) {
   if (json.containsKey("scalar_mapping")) {
     final valueScalars = json['scalar_mapping'];
     final scalars = valueScalars as List<Map<String, String>>;
-    scalars.removeWhere((element) => element.isEmpty || element == null);
+    scalars.removeWhere((element) => element.isEmpty);
     scalar_mapping = List.from(scalars.map((e) => ScalarMap.fromJson(e)));
   }
   List<ScalarMap> scalarMapping = scalar_mapping ?? [];
@@ -33,7 +33,7 @@ GeneratorOptions _$GeneratorOptionsFromJson(Map json) {
   if (json.containsKey("schema_mapping")) {
     final valueSchemas = json['schema_mapping'];
     final schemas = valueSchemas as List<Map<String, String>>;
-    schemas.removeWhere((element) => element.isEmpty || element == null);
+    schemas.removeWhere((element) => element.isEmpty);
     schema_mapping = List.from(schemas.map((e) => SchemaMap.fromJson(e)));
   }
   List<SchemaMap> schemaMapping = schema_mapping ?? [];
@@ -70,7 +70,7 @@ DartType _$DartTypeFromJson(Map<String, dynamic> json) {
 
   return DartType(
     name: json['name'] as String,
-    imports: (json['imports'] as List)?.map((e) => e as String)?.toList() ?? [],
+    imports: (json['imports'] as List).map((e) => e as String).toList(),
   );
 }
 
@@ -95,13 +95,43 @@ Map<String, dynamic> _$ScalarMapToJson(ScalarMap instance) => <String, dynamic>{
     };
 
 SchemaMap _$SchemaMapFromJson(Map<String, dynamic> json) {
+
+  String? output;
+  if (json.containsKey("output")) {
+    output = json['output'] as String;
+  }
+  // else {
+  //   output = '';
+  // }
+
+  String? schema;
+  if (json.containsKey("schema")) {
+    schema = json['schema'] as String;
+  }
+  // else {
+  //   schema = '';
+  // }
+
+  String? queries_glob;
+  if (json.containsKey("queries_glob")) {
+    queries_glob = json['queries_glob'] as String;
+  }
+  // else {
+  //   queries_glob = '';
+  // }
+
+  String? type_name_field;
+  if (json.containsKey("type_name_field")) {
+    type_name_field = json['type_name_field'] as String;
+  } else {
+    type_name_field = '__typename';
+  }
+
   return SchemaMap(
-    output: json['output'] as String,
-    schema: json['schema'] as String,
-    queriesGlob: json['queries_glob'] as String,
-    typeNameField: json.containsKey("type_name_field")
-        ? json['type_name_field'] as String
-        : '__typename',
+    output: output,
+    schema: schema,
+    queriesGlob: queries_glob,
+    typeNameField: type_name_field,
     namingScheme: _$enumDecodeNullable(
         _$NamingSchemeEnumMap, json['naming_scheme'],
         unknownValue: NamingScheme.pathedWithTypes),

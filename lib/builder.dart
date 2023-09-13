@@ -1,4 +1,4 @@
-// @dart = 3.1.1
+// @dart = 3.1
 
 import 'dart:async';
 
@@ -36,7 +36,7 @@ Please check your build.yaml file.
 
   return schemaMaps
       .map((s) {
-        final outputWithoutLib = s.output.replaceAll(RegExp(r'^lib/'), '');
+        final outputWithoutLib = (s.output??'').replaceAll(RegExp(r'^lib/'), '');
 
         return {
           outputWithoutLib,
@@ -90,20 +90,20 @@ class GraphQLQueryBuilder implements Builder {
     for (final schemaMap in options.schemaMapping) {
       final buffer = StringBuffer();
       final outputFileId = AssetId(buildStep.inputId.package,
-          _addGraphQLExtensionToPathIfNeeded(schemaMap.output));
+          _addGraphQLExtensionToPathIfNeeded(schemaMap.output!));
 
       // Loop through all files in glob
       if (schemaMap.queriesGlob == null) {
         throw Exception('''No queries were considered on this generation!
 Make sure that `queries_glob` your build.yaml file include GraphQL queries files.
 ''');
-      } else if (Glob(schemaMap.queriesGlob).matches(schemaMap.schema)) {
+      } else if (Glob(schemaMap.queriesGlob!).matches(schemaMap.schema!)) {
         throw QueryGlobsSchemaException();
-      } else if (Glob(schemaMap.queriesGlob).matches(schemaMap.output)) {
+      } else if (Glob(schemaMap.queriesGlob!).matches(schemaMap.output!)) {
         throw QueryGlobsOutputException();
       }
 
-      final assetStream = buildStep.findAssets(Glob(schemaMap.queriesGlob));
+      final assetStream = buildStep.findAssets(Glob(schemaMap.queriesGlob!));
       final gqlDocs = await assetStream
           .asyncMap(
             (asset) async => parseString(
@@ -113,7 +113,7 @@ Make sure that `queries_glob` your build.yaml file include GraphQL queries files
           )
           .toList();
 
-      final schemaAssetStream = buildStep.findAssets(Glob(schemaMap.schema));
+      final schemaAssetStream = buildStep.findAssets(Glob(schemaMap.schema!));
 
       DocumentNode gqlSchema;
 
@@ -135,7 +135,7 @@ ${e}
       }
 
       final libDefinition = generateLibrary(
-        _addGraphQLExtensionToPathIfNeeded(schemaMap.output),
+        _addGraphQLExtensionToPathIfNeeded(schemaMap.output!),
         gqlDocs,
         options,
         schemaMap,
@@ -153,9 +153,9 @@ ${e}
 
       await buildStep.writeAsString(outputFileId, buffer.toString());
 
-      if (!schemaMap.output.endsWith('.graphql.dart')) {
+      if (!schemaMap.output!.endsWith('.graphql.dart')) {
         final forwarderOutputFileId =
-            AssetId(buildStep.inputId.package, schemaMap.output);
+            AssetId(buildStep.inputId.package, schemaMap.output!);
         await buildStep.writeAsString(
             forwarderOutputFileId, writeLibraryForwarder(libDefinition));
       }

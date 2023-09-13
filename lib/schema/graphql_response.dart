@@ -1,4 +1,4 @@
-// @dart = 3.1.1
+// @dart = 3.1
 
 import 'package:gql_exec/gql_exec.dart';
 import 'package:meta/meta.dart';
