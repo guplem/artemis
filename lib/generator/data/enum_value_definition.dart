@@ -31,12 +31,12 @@ class EnumValueName extends Name with DataPrinter {
   EnumValueName({required String name}) : super(name: name);
 
   @override
-  Map<String, Object> get namedProps => {
+  Map<String, Object?> get namedProps => {
         'name': name,
       };
 
   @override
-  String normalize(String name) {
-    return ReCase(super.normalize(name)).camelCase;
+  String normalize(String? name) {
+    return ReCase(super.normalize(name)!).camelCase;
   }
 }

@@ -9,10 +9,10 @@ import 'package:recase/recase.dart';
 /// Define a Dart enum parsed from GraphQL schema.
 class EnumDefinition extends Definition with DataPrinter {
   @override
-  final EnumName name;
+  final EnumName? name;
 
   /// The possible values of this enum.
-  final Iterable<EnumValueDefinition> values;
+  final Iterable<EnumValueDefinition>? values;
 
   /// Instantiate an enum definition.
   EnumDefinition({
@@ -22,7 +22,7 @@ class EnumDefinition extends Definition with DataPrinter {
         super(name: name);
 
   @override
-  Map<String, Object> get namedProps => {
+  Map<String, Object?> get namedProps => {
         'name': name,
         'values': values,
       };
@@ -31,15 +31,15 @@ class EnumDefinition extends Definition with DataPrinter {
 /// Enum name
 class EnumName extends Name with DataPrinter {
   /// Instantiate a enum name definition.
-  EnumName({required String name}) : super(name: name);
+  EnumName({required String? name}) : super(name: name);
 
   @override
-  String normalize(String name) {
-    return ReCase(super.normalize(name)).pascalCase;
+  String normalize(String? name) {
+    return ReCase(super.normalize(name)!).pascalCase;
   }
 
   @override
-  Map<String, Object> get namedProps => {
+  Map<String, Object?> get namedProps => {
         'name': name,
       };
 }

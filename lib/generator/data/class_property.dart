@@ -69,14 +69,14 @@ class ClassPropertyName extends Name with DataPrinter {
   ClassPropertyName({required String name}) : super(name: name);
 
   @override
-  String normalize(String name) {
+  String normalize(String? name) {
     final normalized = super.normalize(name);
-    final suffix = RegExp(r'.*(_+)$').firstMatch(normalized)?.group(1) ?? '';
-    return ReCase(super.normalize(name)).camelCase + suffix;
+    final suffix = RegExp(r'.*(_+)$').firstMatch(normalized!)?.group(1) ?? '';
+    return ReCase(super.normalize(name)!).camelCase + suffix;
   }
 
   @override
-  Map<String, Object> get namedProps => {
+  Map<String, Object?> get namedProps => {
         'name': name,
       };
 }
@@ -86,18 +86,18 @@ const _camelCaseTypes = {'bool', 'double', 'int'};
 /// Type name
 class TypeName extends Name with DataPrinter {
   /// Instantiate a type name definition.
-  TypeName({required String name}) : super(name: name);
+  TypeName({required String? name}) : super(name: name);
 
   @override
-  Map<String, Object> get namedProps => {
+  Map<String, Object?> get namedProps => {
         'name': name,
       };
 
   @override
-  String normalize(String name) {
+  String? normalize(String? name) {
     final normalized = super.normalize(name);
     if (_camelCaseTypes.contains(normalized)) return normalized;
 
-    return ReCase(normalized).pascalCase;
+    return ReCase(normalized!).pascalCase;
   }
 }

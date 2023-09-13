@@ -41,10 +41,10 @@ class QueryDefinition extends Definition with DataPrinter {
         super(name: name);
 
   /// class name for helper classes
-  String get className => ClassName(name: operationName).namePrintable;
+  String? get className => ClassName(name: operationName).namePrintable;
 
   @override
-  Map<String, Object> get namedProps => {
+  Map<String, Object?> get namedProps => {
         'name': name,
         'operationName': operationName,
         'classes': classes,
@@ -57,7 +57,7 @@ class QueryDefinition extends Definition with DataPrinter {
 /// Query name
 class QueryName extends Name with DataPrinter {
   /// Instantiate a query name definition.
-  QueryName({required String name}) : super(name: name);
+  QueryName({required String? name}) : super(name: name);
 
   /// Generate class name from hierarchical path
   factory QueryName.fromPath({required List<Name> path}) {
@@ -65,12 +65,12 @@ class QueryName extends Name with DataPrinter {
   }
 
   @override
-  Map<String, Object> get namedProps => {
+  Map<String, Object?> get namedProps => {
         'name': name,
       };
 
   @override
-  String normalize(String name) {
-    return ReCase(super.normalize(name)).pascalCase;
+  String normalize(String? name) {
+    return ReCase(super.normalize(name)!).pascalCase;
   }
 }

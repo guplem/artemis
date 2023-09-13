@@ -33,7 +33,7 @@ class ClassDefinition extends Definition with DataPrinter {
 
   /// Instantiate a class definition.
   ClassDefinition({
-    required Name name,
+    required Name? name,
     this.properties = const [],
     this.extension,
     this.implementations = const [],
@@ -69,12 +69,12 @@ class ClassName extends Name with DataPrinter {
   }
 
   @override
-  Map<String, Object> get namedProps => {
+  Map<String, Object?> get namedProps => {
         'name': name,
       };
 
   @override
-  String normalize(String name) {
-    return ReCase(super.normalize(name)).pascalCase;
+  String normalize(String? name) {
+    return ReCase(super.normalize(name)!).pascalCase;
   }
 }

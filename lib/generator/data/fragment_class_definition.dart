@@ -9,7 +9,7 @@ import 'package:recase/recase.dart';
 /// Define a Dart class parsed from GraphQL fragment.
 class FragmentClassDefinition extends Definition with DataPrinter {
   @override
-  final FragmentName name;
+  final FragmentName? name;
 
   /// The properties (fields) of the class.
   final Iterable<ClassProperty> properties;
@@ -22,7 +22,7 @@ class FragmentClassDefinition extends Definition with DataPrinter {
         super(name: name);
 
   @override
-  Map<String, Object> get namedProps => {
+  Map<String, Object?> get namedProps => {
         'name': name,
         'properties': properties,
       };
@@ -39,13 +39,13 @@ class FragmentName extends Name with DataPrinter {
   }
 
   @override
-  Map<String, Object> get namedProps => {
+  Map<String, Object?> get namedProps => {
         'name': name,
       };
 
   @override
-  String normalize(String name) {
-    final normalizedName = ReCase(super.normalize(name)).pascalCase;
+  String? normalize(String? name) {
+    final normalizedName = ReCase(super.normalize(name)!).pascalCase;
     if (normalizedName.endsWith('Mixin')) {
       return name;
     }

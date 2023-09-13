@@ -43,7 +43,7 @@ class QueryInputName extends Name {
   QueryInputName({required String name}) : super(name: name);
 
   @override
-  Map<String, Object> get namedProps => {
+  Map<String, Object?> get namedProps => {
         'name': name,
       };
 }

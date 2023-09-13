@@ -7,7 +7,7 @@ import 'package:equatable/equatable.dart';
 /// Abstract definition of an entity.
 abstract class Definition extends Equatable with DataPrinter {
   /// The definition name.
-  final Name name;
+  final Name? name;
 
   /// Instantiate a definition.
   Definition({required this.name});
@@ -16,17 +16,17 @@ abstract class Definition extends Equatable with DataPrinter {
 /// Abstract name of an entity.
 abstract class Name extends Equatable with DataPrinter {
   /// Raw name string
-  final String name;
+  final String? name;
 
   /// Instantiate a name.
   Name({required this.name}) : assert(hasValue(name));
 
   /// Name suitable for code printing
-  String get namePrintable => normalize(name);
+  String? get namePrintable => normalize(name);
 
   /// type name safe to use for dart
-  String get dartTypeSafe => namePrintable.replaceAll(RegExp(r'[<>]'), '');
+  String? get dartTypeSafe => namePrintable?.replaceAll(RegExp(r'[<>]'), '');
 
   /// Name normalization function
-  String normalize(String name) => normalizeName(name);
+  String? normalize(String? name) => normalizeName(name);
 }

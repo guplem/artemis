@@ -359,7 +359,10 @@ class AClass with EquatableMixin, FragmentMixin {
 
       expect(str, '''@JsonSerializable(explicitToJson: true)
 class AClass with EquatableMixin {
-  AClass({this.name, @required this.anotherName});
+  AClass({
+    this.name,
+    @required this.anotherName,
+  });
 
   factory AClass.fromJson(Map<String, dynamic> json) => _\$AClassFromJson(json);
 
@@ -492,11 +495,12 @@ class TestQueryQuery extends GraphQLQuery<TestQuery, JsonSerializable> {
   @override
   final DocumentNode document = DocumentNode(definitions: [
     OperationDefinitionNode(
-        type: OperationType.query,
-        name: NameNode(value: 'test_query'),
-        variableDefinitions: [],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: []))
+      type: OperationType.query,
+      name: NameNode(value: 'test_query'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: []),
+    )
   ]);
 
   @override
@@ -560,11 +564,12 @@ class TestQueryQuery extends GraphQLQuery<TestQuery, TestQueryArguments> {
   @override
   final DocumentNode document = DocumentNode(definitions: [
     OperationDefinitionNode(
-        type: OperationType.query,
-        name: NameNode(value: 'test_query'),
-        variableDefinitions: [],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: []))
+      type: OperationType.query,
+      name: NameNode(value: 'test_query'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: []),
+    )
   ]);
 
   @override
@@ -635,11 +640,12 @@ class TestQueryArguments extends JsonSerializable with EquatableMixin {
   @override
   final DocumentNode document = DocumentNode(definitions: [
     OperationDefinitionNode(
-        type: OperationType.query,
-        name: NameNode(value: 'test_query'),
-        variableDefinitions: [],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: []))
+      type: OperationType.query,
+      name: NameNode(value: 'test_query'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: []),
+    )
   ]);
 
   @override
@@ -707,7 +713,7 @@ enum SomeEnum {
   test('Should not add ignore_for_file when ignoreForFile is null', () {
     final buffer = StringBuffer();
     final definition = LibraryDefinition(basename: r'test_query.graphql');
-    final List<String> ignoreForFile = null;
+    final List<String>? ignoreForFile = null;
 
     writeLibraryDefinitionToBuffer(buffer, ignoreForFile, definition);
 

@@ -12,7 +12,7 @@ typedef OnBuildQuery = void Function(LibraryDefinition definition);
 /// generation.
 class LibraryDefinition extends Equatable with DataPrinter {
   /// The output file basename.
-  final String basename;
+  final String? basename;
 
   /// A list of queries.
   final Iterable<QueryDefinition> queries;
@@ -28,7 +28,7 @@ class LibraryDefinition extends Equatable with DataPrinter {
   }) : assert(hasValue(basename));
 
   @override
-  Map<String, Object> get namedProps => {
+  Map<String, Object?> get namedProps => {
         'basename': basename,
         'queries': queries,
         'customImports': customImports,
