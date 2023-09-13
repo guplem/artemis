@@ -348,8 +348,8 @@ Make sure your query is correct and your schema is updated.''');
   if (nextType is ScalarTypeDefinitionNode) {
     final scalar = gql.getSingleScalarMap(context.options, nextType.name.value);
 
-    if (scalar.customParserImport != null &&
-        nextType.name.value == scalar.graphQLType) {
+    if (scalar?.customParserImport != null &&
+        nextType.name.value == scalar?.graphQLType) {
       final graphqlTypeSafeStr = TypeName(
           name: gql
               .buildTypeName(fieldType, context.options,

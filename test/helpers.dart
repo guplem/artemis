@@ -13,10 +13,10 @@ final bool Function(Iterable, Iterable) listEquals =
     const DeepCollectionEquality.unordered().equals;
 
 Future testGenerator({
-  @required String query,
-  @required LibraryDefinition libraryDefinition,
-  @required String generatedFile,
-  @required String schema,
+  required String query,
+  required LibraryDefinition libraryDefinition,
+  required String generatedFile,
+  required String schema,
   String namingScheme = 'pathedWithTypes',
   bool generateHelpers = false,
   Map<String, dynamic> builderOptionsMap = const {},
@@ -61,10 +61,10 @@ Future testGenerator({
 }
 
 Future testNaming({
-  @required String query,
-  @required String schema,
-  @required List<String> expectedNames,
-  @required String namingScheme,
+  required String query,
+  required String schema,
+  required List<String> expectedNames,
+  required String namingScheme,
   bool shouldFail = false,
 }) {
   assert((schema) != null);

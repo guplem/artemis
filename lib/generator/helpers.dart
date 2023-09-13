@@ -99,7 +99,7 @@ String normalizeName(String name) {
     var match = matches.elementAt(0);
     var fieldName = match.group(2);
 
-    return fieldName.padLeft(name.length, r'$');
+    return fieldName?.padLeft(name.length, r'$') ?? '';
   }
 
   if (dartKeywords.contains(name.toLowerCase())) {

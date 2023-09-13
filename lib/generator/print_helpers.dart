@@ -3,8 +3,9 @@
 import 'package:artemis/generator/data/data.dart';
 import 'package:artemis/generator/data/enum_value_definition.dart';
 import 'package:code_builder/code_builder.dart';
+import 'package:collection/collection.dart';
 import 'package:dart_style/dart_style.dart';
-import 'package:gql_code_gen/gql_code_gen.dart' as dart;
+import 'package:gql_code_builder/src/ast.dart' as gql_code_builder;
 
 import '../generator/helpers.dart';
 
@@ -122,7 +123,7 @@ Spec classDefinitionToSpec(
       .followedBy(definition.properties.map((p) => p.name.namePrintable));
 
   final extendedClass = classes
-      .firstWhere((e) => e.name == definition.extension, orElse: () => null);
+      .firstWhereOrNull((e) => e.name == definition.extension);
 
   return Class(
     (b) => b
@@ -279,7 +280,7 @@ Spec generateQueryClassSpec(QueryDefinition definition) {
         ..modifier = FieldModifier.final$
         ..type = refer('DocumentNode', 'package:gql/ast.dart')
         ..name = 'document'
-        ..assignment = dart.fromNode(definition.document).code,
+        ..assignment = gql_code_builder.fromNode(definition.document).code,
     ),
     Field(
       (f) => f
