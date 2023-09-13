@@ -20,7 +20,7 @@ class GeneratorOptions {
   final List<ScalarMap> scalarMapping;
 
   /// A list of fragments apply for all query files without declare them.
-  final String fragmentsGlob;
+  final String? fragmentsGlob;
 
   /// A list of schema mappings.
   @JsonKey(defaultValue: [])
@@ -35,7 +35,7 @@ class GeneratorOptions {
   GeneratorOptions({
     this.generateHelpers = true,
     this.scalarMapping = const [],
-    required this.fragmentsGlob,
+    this.fragmentsGlob,
     this.schemaMapping = const [],
     this.ignoreForFile = const [],
   });
@@ -160,8 +160,8 @@ class SchemaMap {
     required this.schema,
     required this.queriesGlob,
     this.typeNameField = '__typename',
-    this.namingScheme = NamingScheme.pathedWithTypes,
-  });
+    NamingScheme? namingScheme,
+  }) : namingScheme = namingScheme ?? NamingScheme.pathedWithTypes;
 
   /// Build a schema mapping from a JSON map.
   factory SchemaMap.fromJson(Map<String, dynamic> json) =>

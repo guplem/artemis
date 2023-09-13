@@ -155,7 +155,6 @@ class Context {
     List<QueryInput>? inputsClasses,
     List<FragmentDefinitionNode>? fragments,
   }) {
-    assert(alias != null);
     return Context(
       schema: schema,
       options: options,

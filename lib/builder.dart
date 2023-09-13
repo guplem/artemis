@@ -74,7 +74,7 @@ class GraphQLQueryBuilder implements Builder {
   @override
   Future<void> build(BuildStep buildStep) async {
     if (options.fragmentsGlob != null) {
-      final fragmentStream = buildStep.findAssets(Glob(options.fragmentsGlob));
+      final fragmentStream = buildStep.findAssets(Glob(options.fragmentsGlob!));
       final fDocs = await fragmentStream
           .asyncMap(
             (asset) async => parseString(
