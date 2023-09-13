@@ -187,12 +187,14 @@ Iterable<QueryDefinition> generateDefinitions(
           '''No root type was found for ${operation.type} $operationName.''');
     }
 
-    final TypeDefinitionNode parentType = objectVisitor.getByName(rootTypeName);
+    final TypeDefinitionNode? parentType = objectVisitor.getByName(rootTypeName);
+
+    assert(parentType != null);
 
     final name = QueryName.fromPath(
         path: createPathName([
       ClassName(name: operationName),
-      ClassName(name: parentType.name.value)
+      ClassName(name: parentType!.name.value)
     ], schemaMap.namingScheme));
 
     final context = Context(
@@ -201,7 +203,7 @@ Iterable<QueryDefinition> generateDefinitions(
       schemaMap: schemaMap,
       path: [
         TypeName(name: operationName),
-        TypeName(name: parentType.name.value)
+        TypeName(name: parentType!.name.value)
       ],
       currentType: parentType,
       currentFieldName: null,

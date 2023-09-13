@@ -12,26 +12,22 @@ GeneratorOptions _$GeneratorOptionsFromJson(Map json) {
   return GeneratorOptions(
     generateHelpers: json['generate_helpers'] as bool ?? true,
     scalarMapping: (json['scalar_mapping'] as List)
-            ?.map((e) => e == null
-                ? null
-                : ScalarMap.fromJson((e as Map)?.map(
-                    (k, e) => MapEntry(k as String, e),
-                  )))
-            ?.toList() ??
-        [],
+        .where((element) => element != null)
+        .map((e) => ScalarMap.fromJson((e as Map).map(
+              (k, e) => MapEntry(k as String, e),
+            )))
+        .toList(),
     fragmentsGlob: json['fragments_glob'] as String,
     schemaMapping: (json['schema_mapping'] as List)
-            ?.map((e) => e == null
-                ? null
-                : SchemaMap.fromJson((e as Map)?.map(
-                    (k, e) => MapEntry(k as String, e),
-                  )))
-            ?.toList() ??
-        [],
+        .where((element) => element != null)
+        .map((e) => SchemaMap.fromJson((e as Map)!.map(
+              (k, e) => MapEntry(k as String, e),
+            )))
+        .toList(),
     ignoreForFile: (json['ignore_for_file'] as List)
-            ?.map((e) => e == null ? null : e as String)
-            ?.toList() ??
-        [],
+        .where((element) => element != null)
+        .map((e) => e as String)
+        .toList(),
   );
 }
 
@@ -91,35 +87,27 @@ Map<String, dynamic> _$SchemaMapToJson(SchemaMap instance) => <String, dynamic>{
       'naming_scheme': _$NamingSchemeEnumMap[instance.namingScheme],
     };
 
-T _$enumDecode<T>(
-  Map<T, dynamic> enumValues,
-  dynamic source, {
-  T unknownValue,
-}) {
+T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source,
+    {T? unknownValue}) {
   if (source == null) {
     throw ArgumentError('A value must be provided. Supported values: '
         '${enumValues.values.join(', ')}');
   }
 
   final value = enumValues.entries
-      .singleWhere((e) => e.value == source, orElse: () => null)
+      .singleWhereOrNull((e) => e.value == source)
       ?.key;
 
   if (value == null && unknownValue == null) {
     throw ArgumentError('`$source` is not one of the supported values: '
         '${enumValues.values.join(', ')}');
   }
-  return value ?? unknownValue;
+  return value ?? unknownValue!;
 }
 
-T _$enumDecodeNullable<T>(
-  Map<T, dynamic> enumValues,
-  dynamic source, {
-  T unknownValue,
-}) {
-  if (source == null) {
-    return null;
-  }
+T _$enumDecodeNullable<T>(Map<T, dynamic> enumValues, dynamic source,
+    {T? unknownValue}) {
+  assert(source != null);
   return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
 }
 

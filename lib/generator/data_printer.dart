@@ -25,7 +25,7 @@ String? _formatPrint(dynamic obj) {
 /// Data printer mixin
 mixin DataPrinter on Equatable {
   ///
-  Map<String, Object> get namedProps;
+  Map<String, Object?> get namedProps;
 
   @override
   List get props => namedProps.values.toList();

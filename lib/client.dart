@@ -48,7 +48,7 @@ class ArtemisClient {
   ) async {
     final request = Request(
       operation: Operation(
-        document: query.document,
+        document: query.document!,
         operationName: query.operationName,
       ),
       variables: query.getVariablesMap(),
@@ -68,7 +68,7 @@ class ArtemisClient {
   ) {
     final request = Request(
       operation: Operation(
-        document: query.document,
+        document: query.document!,
         operationName: query.operationName,
       ),
       variables: query.getVariablesMap(),

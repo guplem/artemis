@@ -16,7 +16,7 @@ class ObjectTypeDefinitionVisitor extends RecursiveVisitor {
   }
 
   /// Gets object type definition node by operation name
-  ObjectTypeDefinitionNode getByName(String name) {
+  ObjectTypeDefinitionNode? getByName(String name) {
     final type = types.where((type) => type.name.value == name);
 
     if (type.isNotEmpty) {

@@ -14,7 +14,7 @@ class ClassDefinition extends Definition with DataPrinter {
   final Iterable<ClassProperty> properties;
 
   /// The type this class extends from, or [null].
-  final Name extension;
+  final Name? extension;
 
   /// The types this class implements.
   final Iterable<String> implementations;
@@ -36,7 +36,7 @@ class ClassDefinition extends Definition with DataPrinter {
   ClassDefinition({
     required Name name,
     this.properties = const [],
-    required this.extension,
+    this.extension,
     this.implementations = const [],
     this.mixins = const [],
     this.factoryPossibilities = const {},
@@ -47,7 +47,7 @@ class ClassDefinition extends Definition with DataPrinter {
         super(name: name);
 
   @override
-  Map<String, Object> get namedProps => {
+  Map<String, Object?> get namedProps => {
         'name': name,
         'properties': properties,
         'extension': extension,

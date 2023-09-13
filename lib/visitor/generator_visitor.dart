@@ -3,6 +3,7 @@ import 'package:artemis/generator/data/data.dart';
 import 'package:artemis/generator/ephemeral_data.dart';
 import 'package:artemis/generator/graphql_helpers.dart' as gql;
 import 'package:artemis/generator/helpers.dart';
+import 'package:collection/collection.dart';
 import 'package:gql/ast.dart';
 import 'package:meta/meta.dart';
 
@@ -17,7 +18,7 @@ class GeneratorVisitor extends RecursiveVisitor {
   final Context context;
 
   /// Selection nodes
-  SelectionSetNode selectionSetNode;
+  SelectionSetNode? selectionSetNode;
 
   /// Class properties
   final List<ClassProperty> _classProperties = [];
@@ -31,7 +32,7 @@ class GeneratorVisitor extends RecursiveVisitor {
 
     logFn(context, nextContext.align, '-> Class');
     logFn(context, nextContext.align,
-        '┌ ${nextContext.path}[${nextContext.currentType.name.value}][${nextContext.currentClassName} ${nextContext.currentFieldName}] (${nextContext.alias ?? ''})');
+        '┌ ${nextContext.path}[${nextContext.currentType?.name.value}][${nextContext.currentClassName} ${nextContext.currentFieldName}] (${nextContext.alias ?? ''})');
     super.visitSelectionSetNode(node);
 
     final possibleTypes = <String, Name>{};
@@ -41,7 +42,7 @@ class GeneratorVisitor extends RecursiveVisitor {
       // Filter by requested types
       final keys = node.selections
           .whereType<InlineFragmentNode>()
-          .map((n) => n.typeCondition.on.name.value);
+          .map((n) => n.typeCondition?.on.name.value).whereNotNull();
 
       final values = keys.map((t) => ClassName.fromPath(
           path:
@@ -55,7 +56,7 @@ class GeneratorVisitor extends RecursiveVisitor {
 
     final name = ClassName.fromPath(path: nextContext.fullPathName());
     logFn(context, nextContext.align,
-        '└ ${nextContext.path}[${nextContext.currentType.name.value}][${nextContext.currentClassName} ${nextContext.currentFieldName}] (${nextContext.alias ?? ''})');
+        '└ ${nextContext.path}[${nextContext.currentType?.name.value}][${nextContext.currentClassName} ${nextContext.currentFieldName}] (${nextContext.alias ?? ''})');
     logFn(context, nextContext.align,
         '<- Generated class ${name.namePrintable}.');
 
@@ -77,7 +78,7 @@ class GeneratorVisitor extends RecursiveVisitor {
     final property = createClassProperty(
       fieldName: ClassPropertyName(name: fieldName),
       fieldAlias: node.alias?.value != null
-          ? ClassPropertyName(name: node.alias?.value)
+          ? ClassPropertyName(name: node.alias!.value)
           : null,
       context: context,
       onNewClassFound: (nextContext) {
@@ -92,11 +93,12 @@ class GeneratorVisitor extends RecursiveVisitor {
   @override
   void visitInlineFragmentNode(InlineFragmentNode node) {
     logFn(context, context.align + 1,
-        '${context.path}: ... on ${node.typeCondition.on.name.value}');
-    final nextType = gql.getTypeByName(context.schema, node.typeCondition.on,
+        '${context.path}: ... on ${node.typeCondition?.on.name.value}');
+    assert(node.typeCondition != null);
+    final nextType = gql.getTypeByName(context.schema, node.typeCondition!.on,
         context: 'inline fragment');
 
-    if (nextType.name.value == context.currentType.name.value) {
+    if (nextType.name.value == context.currentType?.name.value) {
       final visitor = GeneratorVisitor(
         context: context.nextTypeWithSamePath(
           nextType: nextType,
@@ -181,8 +183,8 @@ class GeneratorVisitor extends RecursiveVisitor {
       final scalar =
           gql.getSingleScalarMap(context.options, leafType.name.value);
 
-      if (scalar.customParserImport != null &&
-          leafType.name.value == scalar.graphQLType) {
+      if (scalar?.customParserImport != null &&
+          leafType.name.value == scalar?.graphQLType) {
         final graphqlTypeSafeStr = TypeName(
             name: gql
                 .buildTypeName(node.type, context.options,
@@ -235,9 +237,8 @@ class GeneratorVisitor extends RecursiveVisitor {
         log: false,
       ),
     );
-    final fragmentDef = context.fragments.firstWhere(
-        (fragment) => fragment.name.value == node.name.value,
-        orElse: () => null);
+    final fragmentDef = context.fragments.firstWhereOrNull(
+        (fragment) => fragment.name.value == node.name.value);
     fragmentDef?.visitChildren(visitor);
 
     _mixins
@@ -263,7 +264,7 @@ class GeneratorVisitor extends RecursiveVisitor {
       schema: context.schema,
       options: context.options,
       schemaMap: context.schemaMap,
-      path: [nextContext.alias],
+      path: nextContext.alias != null ? [nextContext.alias!] : [],
       currentType: nextType,
       currentFieldName: null,
       currentClassName: null,

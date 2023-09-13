@@ -16,7 +16,7 @@ class OperationTypeDefinitionNodeVisitor extends RecursiveVisitor {
   }
 
   /// Gets operation type definition node by operation name
-  OperationTypeDefinitionNode getByType(OperationType operationType) {
+  OperationTypeDefinitionNode? getByType(OperationType operationType) {
     final type = types.where((type) => type.operation == operationType);
 
     if (type.isNotEmpty) {

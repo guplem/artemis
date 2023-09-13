@@ -52,7 +52,7 @@ TypeName buildTypeName(
       if (type is ScalarTypeDefinitionNode) {
         final scalar = getSingleScalarMap(options, node.name.value);
         return TypeName(
-            name: dartType ? scalar!.dartType.name : scalar!.graphQLType);
+            name: dartType ? scalar!.dartType!.name : scalar!.graphQLType);
       }
 
       if (type is EnumTypeDefinitionNode ||

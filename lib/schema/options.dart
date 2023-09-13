@@ -1,5 +1,6 @@
 // @dart = 3.1.1
 
+import 'package:collection/collection.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:yaml/yaml.dart';
 
@@ -34,7 +35,7 @@ class GeneratorOptions {
   GeneratorOptions({
     this.generateHelpers = true,
     this.scalarMapping = const [],
-    this.fragmentsGlob,
+    required this.fragmentsGlob,
     this.schemaMapping = const [],
     this.ignoreForFile = const [],
   });
@@ -59,7 +60,7 @@ class DartType {
 
   /// Instantiate a Dart type.
   const DartType({
-    this.name,
+    required this.name,
     this.imports = const [],
   });
 
@@ -91,14 +92,14 @@ class ScalarMap {
   final String graphQLType;
 
   /// The Dart type linked to this GraphQL type.
-  final DartType dartType;
+  final DartType? dartType;
 
   /// If custom parser would be used.
-  final String customParserImport;
+  final String? customParserImport;
 
   /// Instatiates a scalar mapping.
   ScalarMap({
-    this.graphQLType,
+    required this.graphQLType,
     this.dartType,
     this.customParserImport,
   });
@@ -155,9 +156,9 @@ class SchemaMap {
 
   /// Instantiates a schema mapping.
   SchemaMap({
-    this.output,
-    this.schema,
-    this.queriesGlob,
+    required this.output,
+    required this.schema,
+    required this.queriesGlob,
     this.typeNameField = '__typename',
     this.namingScheme = NamingScheme.pathedWithTypes,
   });

@@ -119,8 +119,8 @@ class Context {
   /// Returns a copy of this context, on the same path, but with a new type.
   Context nextTypeWithSamePath({
     required TypeDefinitionNode nextType,
-    required Name nextFieldName,
-    required Name nextClassName,
+    Name? nextFieldName,
+    Name? nextClassName,
     TypeDefinitionNode? ofUnion,
     Name? alias,
     List<Definition>? generatedClasses,
@@ -181,8 +181,8 @@ class Context {
 
   /// Returns a copy of this context, with the same type and path.
   Context withAlias({
-    required Name nextFieldName,
-    required Name nextClassName,
+    Name? nextFieldName,
+    Name? nextClassName,
     Name? alias,
   }) =>
       Context(

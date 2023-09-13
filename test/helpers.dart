@@ -20,8 +20,8 @@ Future testGenerator({
   String namingScheme = 'pathedWithTypes',
   bool generateHelpers = false,
   Map<String, dynamic> builderOptionsMap = const {},
-  Map<String, dynamic> sourceAssetsMap = const {},
-  Map<String, dynamic> outputsMap = const {},
+  Map<String, Object> sourceAssetsMap = const {},
+  Map<String, Object> outputsMap = const {},
 }) async {
   Logger.root.level = Level.INFO;
 

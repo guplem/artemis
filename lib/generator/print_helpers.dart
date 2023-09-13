@@ -134,7 +134,7 @@ Spec classDefinitionToSpec(
       ..mixins.addAll(definition.mixins.map((i) => refer(i.namePrintable)))
       ..methods.add(_propsMethod('[${props.join(',')}]'))
       ..extend = definition.extension != null
-          ? refer(definition.extension.namePrintable)
+          ? refer(definition.extension!.namePrintable)
           : null
       ..implements.addAll(definition.implementations.map((i) => refer(i)))
       ..constructors.add(Constructor((b) {
