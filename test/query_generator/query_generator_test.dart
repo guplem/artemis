@@ -213,7 +213,10 @@ class SomeQuery$Query with EquatableMixin {
 
 @JsonSerializable(explicitToJson: true)
 class SomeQueryArguments extends JsonSerializable with EquatableMixin {
-  SomeQueryArguments({@required this.intsNonNullable, this.stringNullable});
+  SomeQueryArguments({
+    @required this.intsNonNullable,
+    this.stringNullable,
+  });
 
   @override
   factory SomeQueryArguments.fromJson(Map<String, dynamic> json) =>
@@ -235,66 +238,78 @@ class SomeQueryQuery extends GraphQLQuery<SomeQuery$Query, SomeQueryArguments> {
   @override
   final DocumentNode document = DocumentNode(definitions: [
     OperationDefinitionNode(
-        type: OperationType.query,
-        name: NameNode(value: 'some_query'),
-        variableDefinitions: [
-          VariableDefinitionNode(
-              variable: VariableNode(name: NameNode(value: 'intsNonNullable')),
-              type: ListTypeNode(
-                  type: NamedTypeNode(
-                      name: NameNode(value: 'Int'), isNonNull: false),
-                  isNonNull: true),
-              defaultValue: DefaultValueNode(value: null),
-              directives: []),
-          VariableDefinitionNode(
-              variable: VariableNode(name: NameNode(value: 'stringNullable')),
-              type: NamedTypeNode(
-                  name: NameNode(value: 'String'), isNonNull: false),
-              defaultValue: DefaultValueNode(value: null),
-              directives: [])
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: 'someQuery'),
+      type: OperationType.query,
+      name: NameNode(value: 'some_query'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'intsNonNullable')),
+          type: ListTypeNode(
+            type: NamedTypeNode(
+              name: NameNode(value: 'Int'),
+              isNonNull: false,
+            ),
+            isNonNull: true,
+          ),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'stringNullable')),
+          type: NamedTypeNode(
+            name: NameNode(value: 'String'),
+            isNonNull: false,
+          ),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        ),
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'someQuery'),
+          alias: null,
+          arguments: [
+            ArgumentNode(
+              name: NameNode(value: 'intsNonNullable'),
+              value: VariableNode(name: NameNode(value: 'intsNonNullable')),
+            ),
+            ArgumentNode(
+              name: NameNode(value: 'stringNullable'),
+              value: VariableNode(name: NameNode(value: 'stringNullable')),
+            ),
+          ],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 's'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'i'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'list'),
               alias: null,
               arguments: [
                 ArgumentNode(
-                    name: NameNode(value: 'intsNonNullable'),
-                    value:
-                        VariableNode(name: NameNode(value: 'intsNonNullable'))),
-                ArgumentNode(
-                    name: NameNode(value: 'stringNullable'),
-                    value:
-                        VariableNode(name: NameNode(value: 'stringNullable')))
+                  name: NameNode(value: 'intsNonNullable'),
+                  value: VariableNode(name: NameNode(value: 'intsNonNullable')),
+                )
               ],
               directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 's'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'i'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'list'),
-                    alias: null,
-                    arguments: [
-                      ArgumentNode(
-                          name: NameNode(value: 'intsNonNullable'),
-                          value: VariableNode(
-                              name: NameNode(value: 'intsNonNullable')))
-                    ],
-                    directives: [],
-                    selectionSet: null)
-              ]))
-        ]))
+              selectionSet: null,
+            ),
+          ]),
+        )
+      ]),
+    )
   ]);
 
   @override

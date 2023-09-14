@@ -159,32 +159,36 @@ class ClientEventsDataQuery
   @override
   final DocumentNode document = DocumentNode(definitions: [
     OperationDefinitionNode(
-        type: OperationType.query,
-        name: NameNode(value: 'ClientEventsData'),
-        variableDefinitions: [],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: 'clientEvents'),
+      type: OperationType.query,
+      name: NameNode(value: 'ClientEventsData'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'clientEvents'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'items'),
               alias: null,
               arguments: [],
               directives: [],
               selectionSet: SelectionSetNode(selections: [
                 FieldNode(
-                    name: NameNode(value: 'items'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: SelectionSetNode(selections: [
-                      FieldNode(
-                          name: NameNode(value: 'type'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null)
-                    ]))
-              ]))
-        ]))
+                  name: NameNode(value: 'type'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                )
+              ]),
+            )
+          ]),
+        )
+      ]),
+    )
   ]);
 
   @override

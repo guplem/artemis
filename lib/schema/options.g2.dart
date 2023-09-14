@@ -15,7 +15,7 @@ GeneratorOptions _$GeneratorOptionsFromJson(Map json) {
   List<ScalarMap>? scalar_mapping;
   if (json.containsKey("scalar_mapping")) {
     final valueScalars = json['scalar_mapping'];
-    final scalars = valueScalars as List<Map<String, String>>;
+    final scalars = valueScalars as List<Map<String, Object>>;
     scalars.removeWhere((element) => element.isEmpty);
     scalar_mapping = List.from(scalars.map((e) => ScalarMap.fromJson(e)));
   }
@@ -84,7 +84,7 @@ ScalarMap _$ScalarMapFromJson(Map<String, dynamic> json) {
     graphQLType: json['graphql_type'] as String,
     dartType:
         json['dart_type'] == null ? null : DartType.fromJson(json['dart_type']),
-    customParserImport: json['custom_parser_import'] as String,
+    customParserImport: json.containsKey("custom_parser_import") ? json['custom_parser_import'] as String : null,
   );
 }
 

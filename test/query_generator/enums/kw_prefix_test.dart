@@ -158,7 +158,10 @@ class SearchArticles$Query with EquatableMixin {
 
 @JsonSerializable(explicitToJson: true)
 class ArticleTitleWhereConditions with EquatableMixin {
-  ArticleTitleWhereConditions({this.kw$operator, this.value});
+  ArticleTitleWhereConditions({
+    this.kw$operator,
+    this.value,
+  });
 
   factory ArticleTitleWhereConditions.fromJson(Map<String, dynamic> json) =>
       _$ArticleTitleWhereConditionsFromJson(json);

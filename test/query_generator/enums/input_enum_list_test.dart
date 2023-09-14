@@ -186,51 +186,60 @@ class BrowseArticlesQuery
   @override
   final DocumentNode document = DocumentNode(definitions: [
     OperationDefinitionNode(
-        type: OperationType.query,
-        name: NameNode(value: 'BrowseArticles'),
-        variableDefinitions: [
-          VariableDefinitionNode(
-              variable: VariableNode(name: NameNode(value: 'article_type_in')),
-              type: ListTypeNode(
-                  type: NamedTypeNode(
-                      name: NameNode(value: 'ArticleType'), isNonNull: true),
-                  isNonNull: false),
-              defaultValue: DefaultValueNode(value: null),
-              directives: [])
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: 'articles'),
+      type: OperationType.query,
+      name: NameNode(value: 'BrowseArticles'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'article_type_in')),
+          type: ListTypeNode(
+            type: NamedTypeNode(
+              name: NameNode(value: 'ArticleType'),
+              isNonNull: true,
+            ),
+            isNonNull: false,
+          ),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        )
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'articles'),
+          alias: null,
+          arguments: [
+            ArgumentNode(
+              name: NameNode(value: 'article_type_in'),
+              value: VariableNode(name: NameNode(value: 'article_type_in')),
+            )
+          ],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 'id'),
               alias: null,
-              arguments: [
-                ArgumentNode(
-                    name: NameNode(value: 'article_type_in'),
-                    value:
-                        VariableNode(name: NameNode(value: 'article_type_in')))
-              ],
+              arguments: [],
               directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'title'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null),
-                FieldNode(
-                    name: NameNode(value: 'article_type'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null)
-              ]))
-        ]))
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'title'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            FieldNode(
+              name: NameNode(value: 'article_type'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ]),
+        )
+      ]),
+    )
   ]);
 
   @override

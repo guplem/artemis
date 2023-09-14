@@ -206,36 +206,43 @@ class SomeQueryQuery
   @override
   final DocumentNode document = DocumentNode(definitions: [
     OperationDefinitionNode(
-        type: OperationType.query,
-        name: NameNode(value: 'some_query'),
-        variableDefinitions: [
-          VariableDefinitionNode(
-              variable: VariableNode(name: NameNode(value: 'input')),
-              type: NamedTypeNode(
-                  name: NameNode(value: 'Input'), isNonNull: true),
-              defaultValue: DefaultValueNode(value: null),
-              directives: [])
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: 'o'),
+      type: OperationType.query,
+      name: NameNode(value: 'some_query'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'input')),
+          type: NamedTypeNode(
+            name: NameNode(value: 'Input'),
+            isNonNull: true,
+          ),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        )
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'o'),
+          alias: null,
+          arguments: [
+            ArgumentNode(
+              name: NameNode(value: 'input'),
+              value: VariableNode(name: NameNode(value: 'input')),
+            )
+          ],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 's'),
               alias: null,
-              arguments: [
-                ArgumentNode(
-                    name: NameNode(value: 'input'),
-                    value: VariableNode(name: NameNode(value: 'input')))
-              ],
+              arguments: [],
               directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 's'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null)
-              ]))
-        ]))
+              selectionSet: null,
+            )
+          ]),
+        )
+      ]),
+    )
   ]);
 
   @override

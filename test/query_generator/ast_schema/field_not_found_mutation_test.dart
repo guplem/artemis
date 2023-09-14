@@ -190,7 +190,10 @@ class CreateThing$MutationRoot with EquatableMixin {
 
 @JsonSerializable(explicitToJson: true)
 class CreateThingInput with EquatableMixin {
-  CreateThingInput({@required this.clientId, this.message});
+  CreateThingInput({
+    @required this.clientId,
+    this.message,
+  });
 
   factory CreateThingInput.fromJson(Map<String, dynamic> json) =>
       _$CreateThingInputFromJson(json);

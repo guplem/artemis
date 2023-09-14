@@ -171,7 +171,12 @@ class SomeQuery$QueryRoot with EquatableMixin {
 
 @JsonSerializable(explicitToJson: true)
 class ComplexInput with EquatableMixin {
-  ComplexInput({@required this.s, this.e, this.ls, this.i});
+  ComplexInput({
+    @required this.s,
+    this.e,
+    this.ls,
+    this.i,
+  });
 
   factory ComplexInput.fromJson(Map<String, dynamic> json) =>
       _$ComplexInputFromJson(json);
@@ -222,36 +227,43 @@ class SomeQueryQuery
   @override
   final DocumentNode document = DocumentNode(definitions: [
     OperationDefinitionNode(
-        type: OperationType.query,
-        name: NameNode(value: 'some_query'),
-        variableDefinitions: [
-          VariableDefinitionNode(
-              variable: VariableNode(name: NameNode(value: 'filter')),
-              type: NamedTypeNode(
-                  name: NameNode(value: 'ComplexInput'), isNonNull: true),
-              defaultValue: DefaultValueNode(value: null),
-              directives: [])
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: 'o'),
+      type: OperationType.query,
+      name: NameNode(value: 'some_query'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'filter')),
+          type: NamedTypeNode(
+            name: NameNode(value: 'ComplexInput'),
+            isNonNull: true,
+          ),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        )
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'o'),
+          alias: null,
+          arguments: [
+            ArgumentNode(
+              name: NameNode(value: 'filter'),
+              value: VariableNode(name: NameNode(value: 'filter')),
+            )
+          ],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 's'),
               alias: null,
-              arguments: [
-                ArgumentNode(
-                    name: NameNode(value: 'filter'),
-                    value: VariableNode(name: NameNode(value: 'filter')))
-              ],
+              arguments: [],
               directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 's'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null)
-              ]))
-        ]))
+              selectionSet: null,
+            )
+          ]),
+        )
+      ]),
+    )
   ]);
 
   @override

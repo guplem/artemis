@@ -292,36 +292,43 @@ class CustomMutation
   @override
   final DocumentNode document = DocumentNode(definitions: [
     OperationDefinitionNode(
-        type: OperationType.mutation,
-        name: NameNode(value: 'custom'),
-        variableDefinitions: [
-          VariableDefinitionNode(
-              variable: VariableNode(name: NameNode(value: 'input')),
-              type: NamedTypeNode(
-                  name: NameNode(value: 'Input'), isNonNull: true),
-              defaultValue: DefaultValueNode(value: null),
-              directives: [])
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: 'mut'),
+      type: OperationType.mutation,
+      name: NameNode(value: 'custom'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'input')),
+          type: NamedTypeNode(
+            name: NameNode(value: 'Input'),
+            isNonNull: true,
+          ),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        )
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: 'mut'),
+          alias: null,
+          arguments: [
+            ArgumentNode(
+              name: NameNode(value: 'input'),
+              value: VariableNode(name: NameNode(value: 'input')),
+            )
+          ],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: 's'),
               alias: null,
-              arguments: [
-                ArgumentNode(
-                    name: NameNode(value: 'input'),
-                    value: VariableNode(name: NameNode(value: 'input')))
-              ],
+              arguments: [],
               directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: 's'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null)
-              ]))
-        ]))
+              selectionSet: null,
+            )
+          ]),
+        )
+      ]),
+    )
   ]);
 
   @override
@@ -360,36 +367,43 @@ class $customMutation
   @override
   final DocumentNode document = DocumentNode(definitions: [
     OperationDefinitionNode(
-        type: OperationType.mutation,
-        name: NameNode(value: '_custom'),
-        variableDefinitions: [
-          VariableDefinitionNode(
-              variable: VariableNode(name: NameNode(value: 'input')),
-              type: NamedTypeNode(
-                  name: NameNode(value: '_Input'), isNonNull: true),
-              defaultValue: DefaultValueNode(value: null),
-              directives: [])
-        ],
-        directives: [],
-        selectionSet: SelectionSetNode(selections: [
-          FieldNode(
-              name: NameNode(value: '_mut'),
+      type: OperationType.mutation,
+      name: NameNode(value: '_custom'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+          variable: VariableNode(name: NameNode(value: 'input')),
+          type: NamedTypeNode(
+            name: NameNode(value: '_Input'),
+            isNonNull: true,
+          ),
+          defaultValue: DefaultValueNode(value: null),
+          directives: [],
+        )
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+          name: NameNode(value: '_mut'),
+          alias: null,
+          arguments: [
+            ArgumentNode(
+              name: NameNode(value: 'input'),
+              value: VariableNode(name: NameNode(value: 'input')),
+            )
+          ],
+          directives: [],
+          selectionSet: SelectionSetNode(selections: [
+            FieldNode(
+              name: NameNode(value: '_s'),
               alias: null,
-              arguments: [
-                ArgumentNode(
-                    name: NameNode(value: 'input'),
-                    value: VariableNode(name: NameNode(value: 'input')))
-              ],
+              arguments: [],
               directives: [],
-              selectionSet: SelectionSetNode(selections: [
-                FieldNode(
-                    name: NameNode(value: '_s'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null)
-              ]))
-        ]))
+              selectionSet: null,
+            )
+          ]),
+        )
+      ]),
+    )
   ]);
 
   @override
