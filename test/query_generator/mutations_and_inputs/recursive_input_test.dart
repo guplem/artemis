@@ -104,7 +104,10 @@ class Custom$Mutation with EquatableMixin {
 
 @JsonSerializable(explicitToJson: true)
 class Input with EquatableMixin {
-  Input({this.and, this.or});
+  Input({
+    this.and,
+    this.or,
+  });
 
   factory Input.fromJson(Map<String, dynamic> json) => _$InputFromJson(json);
 
